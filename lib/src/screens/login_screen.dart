@@ -21,24 +21,35 @@ class LoginScreen extends StatelessWidget {
   }
 
   Widget emailField() {
-    return TextField(
-      keyboardType: TextInputType.emailAddress,
-      decoration: InputDecoration(
-        hintText: 'email@example.com',
-        labelText: 'Email address:',
-        errorText: 'Email is not valid',
-      ),
+    return StreamBuilder(
+      stream: authBloc.email,
+      builder: (context, snapshot) {
+        return TextField(
+          onChanged: authBloc.changeEmail,
+          keyboardType: TextInputType.emailAddress,
+          decoration: InputDecoration(
+            hintText: 'email@example.com',
+            labelText: 'Email address:',
+            errorText: snapshot.error,
+          ),
+        );
+      },
     );
   }
 
   Widget passwordField() {
-    return TextField(
-      decoration: InputDecoration(
-          hintText: '*****',
-          labelText: 'Password:',
-          errorText: 'Password must be at least 5 symbols'),
-      obscureText: true,
-    );
+    return StreamBuilder(
+        stream: authBloc.password,
+        builder: (context, snapshot) {
+          return TextField(
+            onChanged: authBloc.changePassword,
+            decoration: InputDecoration(
+                hintText: '*****',
+                labelText: 'Password:',
+                errorText: snapshot.error),
+            obscureText: true,
+          );
+        });
   }
 
   Widget submitButton() {

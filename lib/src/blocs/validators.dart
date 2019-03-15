@@ -14,7 +14,7 @@ class ValidationMixin {
 
   final validatePassword =
       StreamTransformer<String, String>.fromHandlers(handleData: (value, sink) {
-    if (value.length < 5) {
+    if (value.isEmpty || value.length < 5) {
       sink.addError('Password must be at least 5 characters long');
     } else {
       sink.add(value);
