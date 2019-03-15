@@ -1,12 +1,15 @@
 import 'dart:async';
+import 'validators.dart';
 
-class AuthBloc {
+class AuthBloc extends Object with ValidationMixin {
   final _emailController = StreamController<String>();
   final _passwordController = StreamController<String>();
 
-  Function(String) get changeEmail => _emailController.sink.add;
+  // add data to stream
   Stream<String> get email => _emailController.stream;
-
-  Function(String) get changePassword => _passwordController.sink.add;
   Stream<String> get password => _passwordController.stream;
+
+  // Change data
+  Function(String) get changeEmail => _emailController.sink.add;
+  Function(String) get changePassword => _passwordController.sink.add;
 }
