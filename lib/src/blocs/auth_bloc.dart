@@ -19,7 +19,3 @@ class AuthBloc extends Object with ValidationMixin {
     _passwordcntr.close();
   }
 }
-
-// single glogal instance
-
-final authBloc = AuthBloc();
