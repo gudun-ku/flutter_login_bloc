@@ -17,7 +17,7 @@ class LoginScreen extends StatelessWidget {
           SizedBox(
             height: 16.0,
           ),
-          submitButton(),
+          submitButton(authBloc),
         ],
       ),
     );
@@ -55,11 +55,20 @@ class LoginScreen extends StatelessWidget {
         });
   }
 
-  Widget submitButton() {
-    return RaisedButton(
-      child: Text('Login'),
-      color: Colors.orange,
-      onPressed: () {},
+  Widget submitButton(AuthBloc authBloc) {
+    return StreamBuilder(
+      stream: authBloc.submitValid,
+      builder: (context, snapshot) {
+        return RaisedButton(
+          child: Text('Login'),
+          color: Colors.orange,
+          onPressed: snapshot.hasData
+              ? () {
+                  print('Hi there!');
+                }
+              : null,
+        );
+      },
     );
   }
 }
