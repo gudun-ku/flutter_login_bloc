@@ -8,14 +8,14 @@ class LoginScreen extends StatelessWidget {
     final authBloc = AuthProvider.of(context);
 
     return Container(
-      margin: EdgeInsets.all(20.0),
+      margin: EdgeInsets.all(32.0),
       child: Column(
         children: <Widget>[
-          Text('Login screen'),
+          Text('Please, log in'),
           emailField(authBloc),
           passwordField(authBloc),
           SizedBox(
-            height: 8.0,
+            height: 16.0,
           ),
           submitButton(),
         ],
